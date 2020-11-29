@@ -1,0 +1,131 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+{{ super() }}
+<section class="graph" id="graf_1">
+    <div class="container">
+        <div class="graph__inner"><h3 class="graph__title">ГРАФИК 1</h3>
+            <div class="graph__wrapper">
+                <form id="form" >
+                <div class="graph__header"><label class="graph__label-checkbox"> <input type="checkbox"
+                                                                                        name="temp"
+                                                                                        class="graph__checkbox" {% if temp!='' %}checked="checked"{% endif %}/> <span
+                        class="graph__checkbox-text">Показывать температуру</span> </label> <label
+                        class="graph__period"> <span class="graph__period-start">Период:</span> <span
+                        class="graph__period-from">с</span> <input type="date" name="start" class="graph__date-from"
+                                                                   value="{{start}}"/> <span class="graph__period-to">по</span>
+                    <input type="date" name="stop" class="graph__date-to" value="{{stop}}" /> </label> <span
+                        class="graph__refresh">                <picture>
+                    <source srcset="images/refresh.svg"
+                                                                                type="image/webp"><img class=""
+                                                                                                       src="images/refresh.svg"
+                                                                                                       alt="refresh" id="refr"/></picture>              </span>
+                </div>
+                <div class="graph__img">
+                    <picture><source srcset="/plot.png?start={{start}}&stop={{stop}}&temp={{ temp }}&apart={{ apart }}&invest={{ invest }}&mode=year" type="image/png">
+                        <img class="" style="max-width: 1100px;" src="/plot.png?start={{start}}&stop={{stop}}&temp={{ temp }}&apart={{ apart }}&invest={{ invest }}&mode=year" alt="garph_1" id="imagemain"/></picture>
+                </div>
+                <div class="graph__footer"><label class="graph__label-checkbox"> <input type="checkbox" name="apart"
+                                                                                        class="graph__checkbox"{% if apart!='' %}checked="checked"{% endif %}/> <span
+                        class="graph__checkbox-text">Площадь введенных новостроек населением</span> </label> <label
+                        class="graph__label-checkbox"> <input type="checkbox" name="invest"
+                                                              class="graph__checkbox" {% if invest!='' %}checked="checked"{% endif %}/> <span
+                        class="graph__checkbox-text">Инвестиции в туризм</span> </label> <label
+                        class="graph__label-checkbox"> <input type="checkbox" name="weather" class="graph__checkbox" {% if weather!='' %}checked="checked"{% endif %}/>
+                    <span class="graph__checkbox-text">Погодные изменения</span> </label></div>
+                <div class="graph__download"><a href="#" download="#">Скачать pdf</a></div>
+            </div>
+            </form>
+        </div>
+    </div>
+</section>
+<section class="graph" id="graf_3">
+    <div class="container">
+        <div class="graph__inner"><h3 class="graph__title">НАЗВАНИЕ ГРАФИКА</h3>
+            <div class="graph__wrapper">
+                <div class="graph__info"><h3 class="graph__info-title"> Как вычесть зависимость потребления от
+                    температуры </h3>
+                    <p class="graph__info-paragraph"> Так как температура коррелирует с потреблением, попробуем извлечь
+                        линейную составляющую из графика потребления </p>
+                    <p class="graph__info-paragraph"> Допустим, температура связана так: P = f(t) = a+bt+bt^2 </p>
+                    <p class="graph__info-paragraph"> Найдем эти коэффициенты для каждого года: </p>
+                    <p class="graph__info-paragraph"> Так как в каждом последующем году есть влияние динамики развития
+                        региона, мы можем взять за опорный один из годов или просто усреднить все коэффтциенты. В итоге
+                        мы получим формулу зависимости температуры от потребления, вычислим на основе этой формулы
+                        потребление и вычтем из реальных данных. Как результат будет нелинейная составляющая
+                        потребления </p></div>
+                <div class="graph__header"><label class="graph__label-checkbox"> <input type="checkbox"
+                                                                                        name="temperature"
+                                                                                        class="graph__checkbox"/> <span
+                        class="graph__checkbox-text">Показывать температуру</span> </label> <span
+                        class="graph__refresh">                <picture><source srcset="images/refresh.svg"
+                                                                                type="image/webp"><img class=""
+                                                                                                       src="images/refresh.svg"
+                                                                                                       alt="refresh"/></picture>              </span>
+                </div>
+                <div class="graph__img">
+                    <picture>
+                        <source srcset="images/graph-3.webp" type="image/webp">
+                        <img class="" src="images/graph-3.png" alt="garph_3"/></picture>
+                </div>
+                <div class="graph__footer"><label class="graph__label-checkbox"> <input type="checkbox" name="square"
+                                                                                        class="graph__checkbox"/> <span
+                        class="graph__checkbox-text">Площадь введенных новостроек населением</span> </label> <label
+                        class="graph__label-checkbox"> <input type="checkbox" name="investment"
+                                                              class="graph__checkbox"/> <span
+                        class="graph__checkbox-text">Инвестиции в туризм</span> </label> <label
+                        class="graph__label-checkbox"> <input type="checkbox" name="weather" class="graph__checkbox"/>
+                    <span class="graph__checkbox-text">Погодные изменения</span> </label></div>
+                <div class="graph__download"><a href="#" download="#">Скачать pdf</a></div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+
+{% block script %}
+{{ super() }}
+<script type="application/javascript">
+$(document).ready(function($){
+    console.log('ok ready');
+
+    $('#refr').click(function () {
+        console.log('click')
+        d = new Date();
+        data = $('#form').serialize()
+        data = '/plot.png?'  + data +'&' + d.getTime()
+        $('#imagemain').attr('src','').promise().done(function() {
+            $(this).attr('src', data)
+            console.log(data)
+        })
+
+        $('#form').submit();
+
+
+    })
+
+    $('input[name=apart]').click(function () {
+        $('#form').submit();
+    })
+
+    $('input[name=invest]').click(function () {
+        $('#form').submit();
+    })
+
+    $('input[name=temp]').click(function () {
+        $('#form').submit();
+    })
+
+    $('#start').on('input', function (obj) {
+        console.log('change')
+        console.log($(this).val)
+    });
+
+
+});
+
+</script>
+{% endblock %}
+</body>
+</html>

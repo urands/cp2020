@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>АНАЛИТИЧЕСКИЙ ЦЕНТР</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com"/>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap"
+          rel="stylesheet"/>
+    <link rel="stylesheet" href="css/normalize.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.css"
+          integrity="sha512-yHknP1/AwR+yx26cB1y0cjvQUMvEa2PFzt1c9LlS4pRQ5NOTZFWbhBig+X9G9eYW/8m0/4OXNx8pxJ6z57x0dw=="
+          crossorigin="anonymous"/>
+    <link rel="stylesheet" href="css/style.min.css"/>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header__inner">
+                <div class="header__logo"><a href="/" class="header__logo-img">
+                    <picture>
+                        <source srcset="images/logo.webp" type="image/webp">
+                        <img class="" src="images/logo.png" alt="logo"/></picture>
+                </a>
+                    <div class="header__logo-text"><h2 class="header__logo-title">Министерство Энергетики</h2>
+                        <h3 class="header__logo-description">Российской Федерации</h3></div>
+                </div>
+                <h1 class="header__title">АНАЛИТИЧЕСКИЙ ЦЕНТР</h1>          <a class="header__btn-profile">Личный
+                кабинет</a></div>
+        </div>
+    </header>
+    <nav class="navigation">
+        <div class="container">
+            <div class="navigation__inner">
+                <ul class="navigation__list">
+                    <li class="navigation__item"><a class="navigation__link" href="/">Дневное</a></li>
+                    <li class="navigation__item"><a class="navigation__link" href="/p3">Ср. месячное</a></li>
+                    <li class="navigation__item"><a class="navigation__link" href="/p2">Годовое</a></li>
+                    <li class="navigation__item"><a class="navigation__link" href="/">Фильтр температуры</a></li>
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+{% block content -%}
+{% endblock %}
+
+
+{% block script %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"
+        integrity="sha512-HGOnQO9+SP1V92SrtZfjqxxtLmVzqZpjFFekvzZVWoiASSQgSr4cw9Kqd2+l8Llp4Gm0G8GIFJ4ddwZilcdb8A=="
+        crossorigin="anonymous"></script>
+    <script src="js/main.min.js"></script>
+{% endblock %}
+</body>
+</html>

@@ -1,0 +1,18 @@
+version: '3.1'
+services:
+  frontend:
+    build: ./server
+    image: server:latest
+    ports:
+      - "80:80"
+    
+    environment:
+      RMQ_URL: 'amqp://guest:guest@rabbit'
+      DB_NAME: db
+      DB_USER: root
+      DB_HOST: mysql
+      DB_URL: "mysql://root@mysql/db"
+    volumes:
+       - app-volume:/app/upload
+volumes:
+     app-volume: 
