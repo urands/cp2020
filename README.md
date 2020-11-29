@@ -2,6 +2,8 @@ Dragon IT
 
 задача минэнерго
 
+Сервер доступен по адресу [http://31.148.136.80/](http://31.148.136.80/)
+
 ## Требования
 
 - Установить [Docker](https://www.docker.com/products/docker-desktop)
