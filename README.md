@@ -5,7 +5,7 @@ Dragon IT
 ## Требования
 
 - Установить [Docker](https://www.docker.com/products/docker-desktop)
-- `git clone https://github.com/urands/online-spb-cp-2020`
+- `git clone https://github.com/urands/cp2020.git`
 
 ## Запуск сервера
 
