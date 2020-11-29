@@ -4,7 +4,7 @@
 {{ super() }}
 <section class="graph" id="graf_1">
     <div class="container">
-        <div class="graph__inner"><h3 class="graph__title">ГРАФИК 1</h3>
+        <div class="graph__inner"><h3 class="graph__title">{{ title }}</h3>
             <div class="graph__wrapper">
                 <form id="form" >
                 <div class="graph__header"><label class="graph__label-checkbox"> <input type="checkbox"
@@ -22,8 +22,8 @@
                                                                                                        alt="refresh" id="refr"/></picture>              </span>
                 </div>
                 <div class="graph__img">
-                    <picture><source srcset="/plot.png?start={{start}}&stop={{stop}}&temp={{ temp }}&apart={{ apart }}&invest={{ invest }}" type="image/png">
-                        <img class="" style="max-width: 1100px;" src="/plot.png?start={{start}}&stop={{stop}}&temp={{ temp }}&apart={{ apart }}&invest={{ invest }}" alt="garph_1" id="imagemain"/></picture>
+                    <picture><source srcset="/plot.png?start={{start}}&stop={{stop}}&temp={{ temp }}&apart={{ apart }}&invest={{ invest }}&mode={{ mode }}&weather={{ weather }}" type="image/png">
+                        <img class="" style="max-width: 1100px;" src="/plot.png?start={{start}}&stop={{stop}}&temp={{ temp }}&apart={{ apart }}&weather={{ weather }}&mode={{ mode }}&invest={{ invest }}" alt="garph_1" id="imagemain"/></picture>
                 </div>
                 <div class="graph__footer"><label class="graph__label-checkbox"> <input type="checkbox" name="apart"
                                                                                         class="graph__checkbox"{% if apart!='' %}checked="checked"{% endif %}/> <span
@@ -32,80 +32,10 @@
                                                               class="graph__checkbox" {% if invest!='' %}checked="checked"{% endif %}/> <span
                         class="graph__checkbox-text">Инвестиции в туризм</span> </label> <label
                         class="graph__label-checkbox"> <input type="checkbox" name="weather" class="graph__checkbox" {% if weather!='' %}checked="checked"{% endif %}/>
-                    <span class="graph__checkbox-text">Погодные изменения</span> </label></div>
+                    <span class="graph__checkbox-text">Убрать погодное влияние</span> </label></div>
                 <div class="graph__download"><a href="#" download="#">Скачать pdf</a></div>
             </div>
             </form>
-        </div>
-    </div>
-</section>
-<section class="graph" id="graf_2">
-    <div class="container">
-        <div class="graph__inner"><h3 class="graph__title"> ПОТРЕБЛЕНИЕ С ВЫЧЕТОМ ВЛИЯНИЯ ТЕМПЕРАТУРЫ ОКРУЖАЮЩЕЙ
-            СРЕДЫ </h3>
-            <div class="graph__wrapper">
-                <div class="graph__header graph__header--alone"><span class="graph__refresh"><picture>
-                    <source
-                        srcset="images/refresh.svg" type="image/webp"><img class="" src="images/refresh.svg"
-                                                                           alt="refresh"/></picture>              </span>
-                </div>
-                <div class="graph__img">
-                    <picture><source srcset="/0plot.png?start=2020-01-01&mode=invest" type="image/png">
-                        <img class="" src="/0plot.png?start=2020-01-01&mode=invest" alt="garph_1"/></picture>
-
-                </div>
-                <div class="graph__footer"><label class="graph__label-checkbox"> <input type="checkbox" name="square"
-                                                                                        class="graph__checkbox"/> <span
-                        class="graph__checkbox-text">Площадь введенных новостроек населением</span> </label> <label
-                        class="graph__label-checkbox"> <input type="checkbox" name="investment"
-                                                              class="graph__checkbox"/> <span
-                        class="graph__checkbox-text">Инвестиции в туризм</span> </label> <label
-                        class="graph__label-checkbox"> <input type="checkbox" name="weather" class="graph__checkbox"/>
-                    <span class="graph__checkbox-text">Погодные изменения</span> </label></div>
-                <div class="graph__download"><a href="#" download="#">Скачать pdf</a></div>
-            </div>
-        </div>
-    </div>
-</section>
-<section class="graph" id="graf_3">
-    <div class="container">
-        <div class="graph__inner"><h3 class="graph__title">НАЗВАНИЕ ГРАФИКА</h3>
-            <div class="graph__wrapper">
-                <div class="graph__info"><h3 class="graph__info-title"> Как вычесть зависимость потребления от
-                    температуры </h3>
-                    <p class="graph__info-paragraph"> Так как температура коррелирует с потреблением, попробуем извлечь
-                        линейную составляющую из графика потребления </p>
-                    <p class="graph__info-paragraph"> Допустим, температура связана так: P = f(t) = a+bt+bt^2 </p>
-                    <p class="graph__info-paragraph"> Найдем эти коэффициенты для каждого года: </p>
-                    <p class="graph__info-paragraph"> Так как в каждом последующем году есть влияние динамики развития
-                        региона, мы можем взять за опорный один из годов или просто усреднить все коэффтциенты. В итоге
-                        мы получим формулу зависимости температуры от потребления, вычислим на основе этой формулы
-                        потребление и вычтем из реальных данных. Как результат будет нелинейная составляющая
-                        потребления </p></div>
-                <div class="graph__header"><label class="graph__label-checkbox"> <input type="checkbox"
-                                                                                        name="temperature"
-                                                                                        class="graph__checkbox"/> <span
-                        class="graph__checkbox-text">Показывать температуру</span> </label> <span
-                        class="graph__refresh">                <picture><source srcset="images/refresh.svg"
-                                                                                type="image/webp"><img class=""
-                                                                                                       src="images/refresh.svg"
-                                                                                                       alt="refresh"/></picture>              </span>
-                </div>
-                <div class="graph__img">
-                    <picture>
-                        <source srcset="images/graph-3.webp" type="image/webp">
-                        <img class="" src="images/graph-3.png" alt="garph_3"/></picture>
-                </div>
-                <div class="graph__footer"><label class="graph__label-checkbox"> <input type="checkbox" name="square"
-                                                                                        class="graph__checkbox"/> <span
-                        class="graph__checkbox-text">Площадь введенных новостроек населением</span> </label> <label
-                        class="graph__label-checkbox"> <input type="checkbox" name="investment"
-                                                              class="graph__checkbox"/> <span
-                        class="graph__checkbox-text">Инвестиции в туризм</span> </label> <label
-                        class="graph__label-checkbox"> <input type="checkbox" name="weather" class="graph__checkbox"/>
-                    <span class="graph__checkbox-text">Погодные изменения</span> </label></div>
-                <div class="graph__download"><a href="#" download="#">Скачать pdf</a></div>
-            </div>
         </div>
     </div>
 </section>
@@ -142,6 +72,10 @@ $(document).ready(function($){
     })
 
     $('input[name=temp]').click(function () {
+        $('#form').submit();
+    })
+
+    $('input[name=weather]').click(function () {
         $('#form').submit();
     })
 

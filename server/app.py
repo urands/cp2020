@@ -25,7 +25,8 @@ def index():
     temp = request.args.get('temp', default='')
     invest = request.args.get('invest', default='')
     apart = request.args.get('apart', default='')
-    return render_template('index.html', start = start, stop = stop, temp=temp, invest = invest, apart=apart)
+    weather = request.args.get('weather', default='')
+    return render_template('index.html', start = start, stop = stop, temp=temp, invest = invest, apart=apart, weather=weather, title='Потребление (дневное)')
 
 @app.route('/p2')
 def index2():
@@ -34,7 +35,8 @@ def index2():
     temp = request.args.get('temp', default='')
     invest = request.args.get('invest', default='')
     apart = request.args.get('apart', default='')
-    return render_template('index2.html', start = start, stop = stop, temp=temp, invest = invest, apart=apart)
+    weather = request.args.get('weather', default='')
+    return render_template('index.html', start = start, stop = stop, temp=temp, invest = invest, apart=apart, weather=weather, mode='year', title='Потребление (годовое)')
 
 @app.route('/p3')
 def index3():
@@ -43,7 +45,18 @@ def index3():
     temp = request.args.get('temp', default='')
     invest = request.args.get('invest', default='')
     apart = request.args.get('apart', default='')
-    return render_template('index3.html', start = start, stop = stop, temp=temp, invest = invest, apart=apart)
+    weather = request.args.get('weather', default='')
+    return render_template('index.html', start = start, stop = stop, temp=temp, invest = invest, apart=apart, weather=weather, mode='month', title='Потребление (среднемесячное)')
+
+
+@app.route('/p4')
+def index4():
+    start = request.args.get('start','2016-01-01')
+    stop = request.args.get('stop', '2020-11-27')
+    temp = request.args.get('temp', default='')
+    invest = request.args.get('invest', default='')
+    apart = request.args.get('apart', default='')
+    return render_template('index.html', start = start, stop = stop, temp=temp, invest = invest, apart=apart, mode='filtr', title='Отклонение потребления')
 
 @app.route('/plot.png')
 def plot():

@@ -3,10 +3,13 @@ import pandas as pd
 
 def load():
     # LOAD POWER
-    power = pd.read_csv('./datasets/gen_and_use1.csv', parse_dates=['M_DATE', 'M_DATE_DAY'])
+    power = pd.read_csv('./datasets/gen_and_use7.csv', parse_dates=['M_DATE', 'M_DATE_DAY'])
     power = power.drop(power[power.E_USE_FACT == 0].index).set_index('M_DATE')
     power['DAY'] = power.index.year * 1000 + power.index.dayofyear
     power['M_DATE'] = power.index
+    power = power.drop(columns=['TEMP'])
+
+
 
     # LOAD TEMPERATURE
     temp = pd.read_csv('./datasets/temperature.csv', parse_dates=[0])

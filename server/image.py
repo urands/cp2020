@@ -11,11 +11,11 @@ rcParams['figure.figsize'] = 16, 8
 rcParams.update({'figure.autolayout': True})
 
 
-def base_model(df, ax1, field = 'E_USE_FACT'):
+def base_model(df, ax1, field = 'E_USE_FACT', title = 'Потребление (МВт*ч)'):
     color = 'tab:blue'
     # fig.title('График')
     ax1.set_xlabel('Дата')
-    ax1.set_ylabel('Потребление (МВт*ч)', color=color)
+    ax1.set_ylabel(title, color=color)
     ax1.plot(df.index, df[field], color=color)
     ax1.tick_params(axis='y', labelcolor=color)
 
@@ -61,6 +61,7 @@ def render_image():
     invest_f = request.args.get('invest', default='', type=str)
     apart_f = request.args.get('apart', default='', type=str)
     temp_f = request.args.get('temp', default='', type=str)
+    weater_f = request.args.get('weather', default='', type=str)
 
 
     try:
@@ -72,14 +73,18 @@ def render_image():
 
 
 
-    if mode == 'clean':
-        clear_data()
+    if weater_f != '':
+        #clear_data()
         df = power[(power.index >= start) & (power.index <= stop)]
-        #base_model(df, ax1,'E_USE_CLEAN')
-    elif mode == 'invest1':
-        clear_data()
+        if mode == 'year':
+            df = df.groupby('year').mean()
+        if mode == 'month':
+            df = df.groupby('month').mean()
+        base_model(df, ax1,'E_USE_CLEAN', 'Отклонение потребления (МВт*ч)')
+    elif mode == 'filtr':
+        #clear_data()
         df = power[(power.index >= start) & (power.index <= stop)]
-        base_model(df, ax1,'E_USE_CLEAN')
+        base_model(df, ax1,'E_USE_CLEAN', 'Отклонение потребления (МВт*ч)')
     else:
         if mode == 'year':
             df = df.groupby('year').mean()
