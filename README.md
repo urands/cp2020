@@ -24,17 +24,3 @@ docker-compose up -d
 ```bash
 docker-compose down
 ```
-
-### Запуск backend отдельно
-
-```bash
-#запустить образ
-docker-compose up backend -d
-```
-
-### Запуск backend
-
-```bash
-#запустить образ
-docker-compose down
-```
